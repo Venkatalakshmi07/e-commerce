@@ -19,3 +19,20 @@
 .click-button-active{
     display: block;
 }
+.cart i{
+
+    position: absolute;
+    top: 2px;
+    right: 50px;
+    bottom: 2px;
+}
+.unorderlist{
+    display: flex;
+    justify-content:space-between;
+}
+.delete-button{
+    display: none;
+}
+.complete-active{
+    text-decoration: line-through;
+}

@@ -183,6 +183,76 @@ window.addEventListener("scroll", function myFunction(){
         button.classList.remove("click-button-active") 
     }
 });
+// loop statement
+// for loop
+for(let i=0;i<10;i++)
+{
+    console.log(i);
+}
+// while loop
+let i=0;
+while(i<10){
+    console.log(i);
+    i++;
+};
+// dowhile loop
+let x=0;
+do{
+    console.log(x);
+    x++;
+}
+while(x<20);
+// DOM intro
+// const todo = document.querySelector(".todo");
+// const div = document.createElement("div");
+// const ul = document.createElement("ul");
+// const li = document.createElement("li");
+// const li1 = document.createElement("li");
+// const li2 = document.createElement("li");
+// const li3 = document.createElement("li");
+// li.innerText = "home";
+// li1.innerText = "aboutus";
+// li2.innerText = "contact";
+// li3.innerText = "gallery";
+// ul.appendChild(li);
+// ul.appendChild(li1);
+// ul.appendChild(li2);
+// ul.appendChild(li3);
+// div.appendChild(ul);
+// ul.className = "unorderlist";
+// div.className = "divison";
+// todo.appendChild(div);
+// li3.remove();
+
+
+const todoInput = document.querySelector(".todo-input");
+const todoButton = document.querySelector(".todo-button");
+const todoList = document.querySelector(".todo-list");
+
+todoButton.addEventListener("click", function myFunction(e){
+    e.preventDefault();
+    const div = document.createElement("div");
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    const complete = document.createElement("button");
+    li.innerText = todoInput.value;
+
+
+    div.appendChild(button);
+    div.appendChild(complete);
+    div.appendChild(li);
+    button.innerText = "Delete";
+    complete.innerText = "complete";
+    button.addEventListener("click", function myFunction(){
+        div.classList.toggle("delete-button");
+    });
+    complete.addEventListener("click", function myFunction(){
+        li.classList.toggle("complete-active");
+    });
+    todoList.appendChild(div);
+    todoInput.value="";
+});
+
 
 
 
