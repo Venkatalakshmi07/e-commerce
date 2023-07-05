@@ -24,7 +24,7 @@ data += `
 <h4>title:- ${items.title}</h4>
 <h6>price:- ${items.price}</h6>
 <p>rating:- ${items.rating}</p>
-<button onclick="deleteButton(${items.id})">Delete</button>
+<button onclick="addToCart(${items.id})">Add To Cart</button>
 </div>
 </div>
 `
@@ -252,6 +252,63 @@ todoButton.addEventListener("click", function myFunction(e){
     todoList.appendChild(div);
     todoInput.value="";
 });
+let emptyList = [];
+
+// cart function
+const cartItem = document.querySelector(".cart-items");
+function cartIcon(){
+    cartItem.classList.toggle("cart-items-active");
+    if(emptyList.length === 0){
+        document.querySelector(".cart-list").innerHTML = `<img src="empty cart.png">`;
+    }else{
+        let cards = "";
+        emptyList.map(function myFunction(items){
+        cards += `
+    <div  data-id="${items.id}">
+    <div class="cart-items-list d-flex justify-content-between align-items-center">
+    
+    <img src=${items.img} alt="">
+  <div>  <h4>title:- ${items.title}</h4>
+  <h6>price:- ${items.price}</h6></div>
+    <i class="fa-solid fa-circle-xmark" onclick="deleteButton(${items.id})"></i>
+    </div>
+    </div>
+    `
+    document.querySelector(".cart-list").innerHTML = cards;
+    });
+    }
+    
+};
+// Add to cart button
+function addToCart(id){
+const findItems = dataStore.find(function findList(items){
+    return items.id === id;
+});
+if(findItems){
+    const findItem = emptyList.findIndex(function indexFunction(items){
+        return items.id === id;
+        
+    });
+    if(findItem !== -1){
+        alert("already item in the cart")
+    }else{
+        emptyList.push(findItems);
+        console.log(emptyList);
+    }
+}
+
+document.querySelector(".list-quantity").innerHTML = emptyList.length;
+};
+ function deleteButton(id){
+    const cartItem = document.querySelector(`[data-id="${id}"]`);
+    cartItem.style.display = "none";
+    const filterArray = emptyList.filter(function filterFunction(items){
+        return items.id !== id;
+    });
+    emptyList = filterArray;
+    document.querySelector(".list-quantity").innerHTML = emptyList.length;
+
+ }; 
 
 
 
